@@ -1,4 +1,5 @@
 ﻿using DestinyApi.Models.Enum;
+using DestinyApi.Models.Results;
 using DestinyApi.SearchDestinyPlayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -22,12 +23,19 @@ namespace DestinyApiTest
         [TestMethod]
         public void SearchPlayer()
         {
+
+            var holyBreadstickXbox = GetHolyBreadstick();
+
+            Assert.IsTrue(holyBreadstickXbox.ContainsPlayer("Holy Breadstick"));
+
+        }
+
+
+        public SearchPlayerResult GetHolyBreadstick()
+        {
             var displayName = "Holy Breadstick";
-            var rawData = _playerSearch.SearchDestinyPlayerAsync(displayName).Result;
+            return _playerSearch.SearchDestinyPlayerAsync(displayName, BungieMembershipType.TigerXbox).Result;
 
-
-            Assert.IsTrue(rawData.ContainsPlayer(displayName));
-            
         }
     }
 }

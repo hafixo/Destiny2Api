@@ -8,7 +8,7 @@ namespace DestinyApi
     public static class RootRequest
     {
         public static String ApiKey = "831dfc2968db40a2bfd1ec9e297a7991";
-        public static String BaseUrl = "https://bungie.net/";
+        public static String BaseUrl = "https://www.bungie.net/";
         public static Uri BaseUri
         {
             get
@@ -16,16 +16,19 @@ namespace DestinyApi
                 return new Uri(BaseUrl);
             }
         }
-        internal static HttpClient _Web { get; } = new HttpClient() { BaseAddress = BaseUri};
-        public static HttpClient Web
+
+        public static HttpClient Web { get; set; }
+
+        public static void LoadWeb()
         {
-            get
+            if (Web == null)
             {
-                if (!_Web.DefaultRequestHeaders.Contains("X-API-Key"))
-                {
-                    _Web.DefaultRequestHeaders.Add("X-API-Key", ApiKey);
-                }
-                return _Web;
+                var webHandler = new HttpClientHandler();
+                webHandler.AllowAutoRedirect = true;
+                webHandler.MaxAutomaticRedirections = 100;
+                HttpClient _web = new HttpClient(webHandler) { BaseAddress = BaseUri };
+                _web.DefaultRequestHeaders.Add("X-API-Key", ApiKey);
+                Web = _web;
             }
         }
     }
