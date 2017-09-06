@@ -5,16 +5,32 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyApi", "DestinyApi\DestinyApi.csproj", "{0FE2A840-00CD-42F5-B026-C79145DEBD59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyApiTest", "DestinyApiTest\DestinyApiTest.csproj", "{0F87FF71-F038-4CC4-9EDC-28928AE17897}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0FE2A840-00CD-42F5-B026-C79145DEBD59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0FE2A840-00CD-42F5-B026-C79145DEBD59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE2A840-00CD-42F5-B026-C79145DEBD59}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0FE2A840-00CD-42F5-B026-C79145DEBD59}.Debug|x86.Build.0 = Debug|Any CPU
 		{0FE2A840-00CD-42F5-B026-C79145DEBD59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FE2A840-00CD-42F5-B026-C79145DEBD59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FE2A840-00CD-42F5-B026-C79145DEBD59}.Release|x86.ActiveCfg = Release|Any CPU
+		{0FE2A840-00CD-42F5-B026-C79145DEBD59}.Release|x86.Build.0 = Release|Any CPU
+		{0F87FF71-F038-4CC4-9EDC-28928AE17897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F87FF71-F038-4CC4-9EDC-28928AE17897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F87FF71-F038-4CC4-9EDC-28928AE17897}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0F87FF71-F038-4CC4-9EDC-28928AE17897}.Debug|x86.Build.0 = Debug|Any CPU
+		{0F87FF71-F038-4CC4-9EDC-28928AE17897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F87FF71-F038-4CC4-9EDC-28928AE17897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F87FF71-F038-4CC4-9EDC-28928AE17897}.Release|x86.ActiveCfg = Release|Any CPU
+		{0F87FF71-F038-4CC4-9EDC-28928AE17897}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
