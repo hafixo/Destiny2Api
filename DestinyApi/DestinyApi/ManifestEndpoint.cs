@@ -10,7 +10,7 @@ namespace DestinyApi
         public const string _ManifestEndpoint = "/Destiny2/Manifest/";
 
 
-        public async void GetManifest()
+        public async void GetManifestAsync()
         {
             var rawData = await RootRequest.Web.GetStringAsync(_ManifestEndpoint);
         }
