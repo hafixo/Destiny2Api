@@ -16,7 +16,11 @@ namespace DestinyApiTest
             var playerTest = new SearchPlayerTest();
             var holyBreadstickXbox = playerTest.GetHolyBreadstick().Response.First();
 
-            var holyBreadstickProfile = _profile.GetProfileAsync((BungieMembershipType)holyBreadstickXbox.membershipType, holyBreadstickXbox.membershipId).Result;
+            var holyBreadstickProfile = _profile.GetProfileWithComponentsAsync(
+                (BungieMembershipType)holyBreadstickXbox.membershipType, 
+                holyBreadstickXbox.membershipId
+                ,DestinyComponentType.Profiles
+                ,DestinyComponentType.ProfileCurrencies).Result;
 
         }
     }
