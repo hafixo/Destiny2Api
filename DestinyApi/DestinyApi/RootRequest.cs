@@ -7,7 +7,7 @@ namespace DestinyApi
 {
     public static class RootRequest
     {
-        public static String ApiKey = "831dfc2968db40a2bfd1ec9e297a7991";
+        public static String ApiKey = "";
         public static String BaseUrl = "https://www.bungie.net/";
         public static Uri BaseUri
         {

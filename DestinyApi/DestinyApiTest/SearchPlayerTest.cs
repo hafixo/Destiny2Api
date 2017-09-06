@@ -19,7 +19,9 @@ namespace DestinyApiTest
             _playerSearch = new SearchDestinyPlayer();
         }
 
-
+        /// <summary>
+        /// Will search for my GamerTag and test if my account was retrieved
+        /// </summary>
         [TestMethod]
         public void SearchPlayer()
         {
