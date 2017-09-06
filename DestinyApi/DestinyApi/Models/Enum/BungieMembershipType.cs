@@ -12,6 +12,6 @@ namespace DestinyApi.Models.Enum
         TigerBlizzard = 4,
         TigerDemon = 10,
         BungieNext = 254,
-        All = 1
+        All = -1
     }
 }

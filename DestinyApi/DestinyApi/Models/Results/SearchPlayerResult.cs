@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace DestinyApi.Models.Results
 {
@@ -13,6 +14,18 @@ namespace DestinyApi.Models.Results
                 return Response.Length != 0;
             }
         }
+
+        public bool ContainsPlayer(string displayName)
+        {
+            if (HasPlayers)
+            {
+                return Response.Where(x => x.displayName == displayName).Count() >= 1;
+            }
+            else {
+                return false;
+            }
+        }
+
         public SearchPlayerResponse[] Response { get; set; }
     }
 

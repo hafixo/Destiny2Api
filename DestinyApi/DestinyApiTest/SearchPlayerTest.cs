@@ -22,17 +22,12 @@ namespace DestinyApiTest
         [TestMethod]
         public void SearchPlayer()
         {
-            var displayName = "GunnaKillYa";
-            var membershipType = BungieMembershipType.TigerXbox;
-            var rawData = _playerSearch.SearchDestinyPlayerAsync(displayName, membershipType).Result;
+            var displayName = "Holy Breadstick";
+            var rawData = _playerSearch.SearchDestinyPlayerAsync(displayName).Result;
 
 
-            Assert.IsTrue(rawData.HasPlayers);
-
-            if (rawData.HasPlayers)
-            {
-                Assert.AreEqual("4611686018429590517", rawData.Response.First().membershipId);
-            }
+            Assert.IsTrue(rawData.ContainsPlayer(displayName));
+            
         }
     }
 }
