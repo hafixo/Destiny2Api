@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyEndpointGenerator", "DestinyEndpointGenerator\DestinyEndpointGenerator.csproj", "{F1A52DF6-D660-43AB-92AE-F6D6F9C0B361}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1A52DF6-D660-43AB-92AE-F6D6F9C0B361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1A52DF6-D660-43AB-92AE-F6D6F9C0B361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1A52DF6-D660-43AB-92AE-F6D6F9C0B361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1A52DF6-D660-43AB-92AE-F6D6F9C0B361}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3D6C6D7-BCAC-450E-A4AA-24768DE1C9D0}
+	EndGlobalSection
+EndGlobal
