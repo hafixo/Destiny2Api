@@ -83,7 +83,7 @@ namespace DestinyEndpints.ClassLibrary
     
     public class DestinyApi
     {
-        static HttpClient _Web = new HttpClient();
+        private static HttpClient _Web = new HttpClient();
         const String BaseAddress = {0};
 
         public DestinyApi(string apiKey)
