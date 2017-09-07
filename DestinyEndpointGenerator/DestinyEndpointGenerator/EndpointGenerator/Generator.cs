@@ -31,6 +31,8 @@ namespace DestinyEndpointGenerator.EndpointGenerator
         {
             var rawData = await _Web.GetStringAsync("https://raw.githubusercontent.com/Bungie-net/api/master/openapi-2.json");
 
+            
+
             _Model = JsonConvert.DeserializeObject<OpenApi2Model>(rawData);
         }
 
@@ -59,24 +61,28 @@ namespace DestinyEndpointGenerator.EndpointGenerator
 
         private string GenerateUsingStatements()
         {
-            var unFormatted = 
+
+            var baseAddress = "https://www.bungie.net/Platform";
+            var addedData = $"\"{baseAddress}\"";
+
+            return 
 @"using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace DestinyEndpints.ClassLibrary
 {
-    static HttpClient _Web = new HttpClient();
-    const String BaseAddress = {0};
+    
     public class DestinyApi
     {
-        public DestinyApi()
+        static HttpClient _Web = new HttpClient();
+        const String BaseAddress = {0};
+
+        public DestinyApi(string apiKey)
         {
-            
+            _Web.DefaultRequestHeaders.Add({xApiKeyReference}, apiKey);
         }
-";
-            var baseAddress = "https://www.bungie.net/Platform";
-            var addedData = $"\"{baseAddress}\"";
-            return unFormatted.Replace("{0}", addedData);
+".Replace("{0}", addedData).Replace("{xApiKeyReference}", $"\"{"X-API-Key"}\"");
         }
 
 
@@ -84,11 +90,16 @@ namespace DestinyEndpints.ClassLibrary
         {
             return
 @"
-        public {0}()
+        public async Task<String> {methodName}Async()
         {
-            //Hello
+            return await _Web.GetStringAsync(BaseAddress);
         }
-";
+
+        public String {methodName}()
+        {
+            return {methodName}Async().Result;
+        }
+".Replace("{methodName}", methodName);
         }
 
 
@@ -102,4 +113,27 @@ namespace DestinyEndpints.ClassLibrary
         }
 
     }
+
+    public class DestinyApi
+    {
+        static HttpClient _Web = new HttpClient();
+        const String BaseAddress = "https://www.bungie.net/Platform";
+
+        public DestinyApi()
+        {
+
+        }
+
+        public async Task<String> User_GetBungieNetUserByIdAsync()
+        {
+            return await _Web.GetStringAsync(BaseAddress);
+        }
+
+        public String User_GetBungieNetUserById()
+        {
+            return User_GetBungieNetUserByIdAsync().Result;
+        }
+
+    }
+
 }
