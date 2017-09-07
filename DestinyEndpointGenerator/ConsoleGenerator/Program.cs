@@ -50,7 +50,7 @@ namespace ConsoleGenerator
         {
             var fileData = _Generator.GenerateClassLibraryAsync().Result;
 
-            File.WriteAllText(@"C:\Users\Bailey Miller\Desktop\ClassLibrary.cs", fileData, Encoding.UTF8);
+            File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}ClassLibrary.cs", fileData, Encoding.UTF8);
             
         }
     }

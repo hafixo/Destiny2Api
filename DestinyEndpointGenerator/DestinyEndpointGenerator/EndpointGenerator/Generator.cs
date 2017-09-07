@@ -44,13 +44,21 @@ namespace DestinyEndpointGenerator.EndpointGenerator
 
 
                 var bigStringBuilder = new StringBuilder();
+                var methodBuilder = new StringBuilder();
                 bigStringBuilder.Append(GenerateUsingStatements());
 
+
+
                 //Add all the methods in
+                foreach (var method in _Model.paths)
+                {
+                    if (method.Value.get != null)
+                    {
+                        methodBuilder.Append(GenerateMethod(method.Value.get.operationId.Replace(".", "_"), method.Value.get.description));
+                    }
+                }
 
-
-                //A sample hard coded method added in
-                bigStringBuilder.Append(GenerateMethod(_Model.paths.UserGetBungieNetUserByIdid.get.operationId.Replace(".", "_")));
+                bigStringBuilder.Append(methodBuilder.ToString());
 
                 bigStringBuilder.Append(GenerateEndingStatements());
 
@@ -86,23 +94,41 @@ namespace DestinyEndpints.ClassLibrary
         }
 
 
-        private string GenerateMethod(string methodName)
+        private string GenerateMethod(string methodName, string description)
         {
             return
 @"
+        {SummaryStatement}
         public async Task<String> {methodName}Async()
         {
             return await _Web.GetStringAsync(BaseAddress);
         }
 
+        {SummaryStatement}
         public String {methodName}()
         {
             return {methodName}Async().Result;
         }
-".Replace("{methodName}", methodName);
+".Replace("{methodName}", methodName).Replace("{SummaryStatement}", GenerateSummaryStatement(description));
         }
 
+        private string GenerateSummaryStatement(string description)
+        {
+            string template = 
+@"
+        /// <summary>
+        /// {Description}
+        /// </summary>
+        /// <returns>A json string for this endpoint</returns>";
 
+
+            return template.Replace("{Description}", description);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private string GenerateEndingStatements()
         {
             return 
