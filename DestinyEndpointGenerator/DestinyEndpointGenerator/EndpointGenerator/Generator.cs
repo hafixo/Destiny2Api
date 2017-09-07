@@ -22,6 +22,8 @@ namespace DestinyEndpointGenerator.EndpointGenerator
             }
         }
 
+        public bool ErrorLoadingModel = false;
+
         public Generator()
         {
             
@@ -29,18 +31,30 @@ namespace DestinyEndpointGenerator.EndpointGenerator
 
         public async Task LoadApiDocsAsync()
         {
-            var rawData = await _Web.GetStringAsync("https://raw.githubusercontent.com/Bungie-net/api/master/openapi-2.json");
+            try
+            {
+                var rawData = await _Web.GetStringAsync("https://raw.githubusercontent.com/Bungie-net/api/master/openapi-2.json");
 
-            
 
-            _Model = JsonConvert.DeserializeObject<OpenApi2Model>(rawData);
+
+                _Model = JsonConvert.DeserializeObject<OpenApi2Model>(rawData);
+                ErrorLoadingModel = false;
+            }
+            catch (Exception)
+            {
+                ErrorLoadingModel = true;
+            }
         }
 
         public async Task<String> GenerateClassLibraryAsync()
         {
             return await Task.Factory.StartNew(()=> {
 
+
+
                 while (!ModelIsLoaded) { }
+
+
 
 
                 var bigStringBuilder = new StringBuilder();
