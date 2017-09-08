@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 namespace DestinyEndpints.ClassLibrary
 {
-    
     public class DestinyApi
     {
         private static HttpClient _Web = new HttpClient();
