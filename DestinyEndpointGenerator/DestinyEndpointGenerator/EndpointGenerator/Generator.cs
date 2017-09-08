@@ -129,7 +129,7 @@ namespace DestinyEndpints.ClassLibrary
         private string GenerateSummaryStatement(string description)
         {
             string template = 
-@"      /// <summary>
+@"/// <summary>
         /// {Description}
         /// </summary>
         /// <returns>A json string for this endpoint</returns>";
