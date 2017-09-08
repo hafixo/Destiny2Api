@@ -33,7 +33,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Loads a bungienet user by membership id.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> User_GetBungieNetUserByIdAsync(int id)
+        public async Task<String> User_GetBungieNetUserByIdAsync(long id)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/User/GetBungieNetUserById/{id}/", new Dictionary<string,string>(){{"id", id.ToString()}}));
         }
@@ -42,7 +42,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Loads a bungienet user by membership id.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String User_GetBungieNetUserById(int id)
+        public String User_GetBungieNetUserById(long id)
         {
             return User_GetBungieNetUserByIdAsync(id).Result;
         }
@@ -51,7 +51,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Loads aliases of a bungienet membership id.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> User_GetUserAliasesAsync(int id)
+        public async Task<String> User_GetUserAliasesAsync(long id)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/User/GetUserAliases/{id}/", new Dictionary<string,string>(){{"id", id.ToString()}}));
         }
@@ -60,7 +60,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Loads aliases of a bungienet membership id.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String User_GetUserAliases(int id)
+        public String User_GetUserAliases(long id)
         {
             return User_GetUserAliasesAsync(id).Result;
         }
@@ -105,7 +105,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns a list of accounts associated with the supplied membership ID and membership type. This will include all linked accounts (even when hidden) if supplied credentials permit it.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> User_GetMembershipDataByIdAsync(int membershipId,int membershipType)
+        public async Task<String> User_GetMembershipDataByIdAsync(long membershipId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/User/GetMembershipsById/{membershipId}/{membershipType}/", new Dictionary<string,string>(){{"membershipId", membershipId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -114,7 +114,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns a list of accounts associated with the supplied membership ID and membership type. This will include all linked accounts (even when hidden) if supplied credentials permit it.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String User_GetMembershipDataById(int membershipId,int membershipType)
+        public String User_GetMembershipDataById(long membershipId,int membershipType)
         {
             return User_GetMembershipDataByIdAsync(membershipId,membershipType).Result;
         }
@@ -141,7 +141,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns a user's linked Partnerships.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> User_GetPartnershipsAsync(int membershipId)
+        public async Task<String> User_GetPartnershipsAsync(long membershipId)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/User/{membershipId}/Partnerships/", new Dictionary<string,string>(){{"membershipId", membershipId.ToString()}}));
         }
@@ -150,7 +150,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns a user's linked Partnerships.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String User_GetPartnerships(int membershipId)
+        public String User_GetPartnerships(long membershipId)
         {
             return User_GetPartnershipsAsync(membershipId).Result;
         }
@@ -159,7 +159,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Get topics from any forum.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Forum_GetTopicsPagedAsync(int categoryFilter,int group,int page,int pageSize,int quickDate,int sort)
+        public async Task<String> Forum_GetTopicsPagedAsync(int categoryFilter,long group,int page,int pageSize,int quickDate,object sort)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Forum/GetTopicsPaged/{page}/{pageSize}/{group}/{sort}/{quickDate}/{categoryFilter}/", new Dictionary<string,string>(){{"categoryFilter", categoryFilter.ToString()},{"group", group.ToString()},{"page", page.ToString()},{"pageSize", pageSize.ToString()},{"quickDate", quickDate.ToString()},{"sort", sort.ToString()}}));
         }
@@ -168,7 +168,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Get topics from any forum.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Forum_GetTopicsPaged(int categoryFilter,int group,int page,int pageSize,int quickDate,int sort)
+        public String Forum_GetTopicsPaged(int categoryFilter,long group,int page,int pageSize,int quickDate,object sort)
         {
             return Forum_GetTopicsPagedAsync(categoryFilter,group,page,pageSize,quickDate,sort).Result;
         }
@@ -177,7 +177,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets a listing of all topics marked as part of the core group.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Forum_GetCoreTopicsPagedAsync(int categoryFilter,int page,int quickDate,int sort)
+        public async Task<String> Forum_GetCoreTopicsPagedAsync(int categoryFilter,int page,int quickDate,object sort)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Forum/GetCoreTopicsPaged/{page}/{sort}/{quickDate}/{categoryFilter}/", new Dictionary<string,string>(){{"categoryFilter", categoryFilter.ToString()},{"page", page.ToString()},{"quickDate", quickDate.ToString()},{"sort", sort.ToString()}}));
         }
@@ -186,7 +186,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets a listing of all topics marked as part of the core group.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Forum_GetCoreTopicsPaged(int categoryFilter,int page,int quickDate,int sort)
+        public String Forum_GetCoreTopicsPaged(int categoryFilter,int page,int quickDate,object sort)
         {
             return Forum_GetCoreTopicsPagedAsync(categoryFilter,page,quickDate,sort).Result;
         }
@@ -195,7 +195,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns a thread of posts at the given parent, optionally returning replies to those posts as well as the original parent.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Forum_GetPostsThreadedPagedAsync(bool getParentPost,int page,int pageSize,int parentPostId,int replySize,bool rootThreadMode,int sortMode)
+        public async Task<String> Forum_GetPostsThreadedPagedAsync(object getParentPost,int page,int pageSize,object parentPostId,int replySize,object rootThreadMode,int sortMode)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Forum/GetPostsThreadedPaged/{parentPostId}/{page}/{pageSize}/{replySize}/{getParentPost}/{rootThreadMode}/{sortMode}/", new Dictionary<string,string>(){{"getParentPost", getParentPost.ToString()},{"page", page.ToString()},{"pageSize", pageSize.ToString()},{"parentPostId", parentPostId.ToString()},{"replySize", replySize.ToString()},{"rootThreadMode", rootThreadMode.ToString()},{"sortMode", sortMode.ToString()}}));
         }
@@ -204,7 +204,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns a thread of posts at the given parent, optionally returning replies to those posts as well as the original parent.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Forum_GetPostsThreadedPaged(bool getParentPost,int page,int pageSize,int parentPostId,int replySize,bool rootThreadMode,int sortMode)
+        public String Forum_GetPostsThreadedPaged(object getParentPost,int page,int pageSize,object parentPostId,int replySize,object rootThreadMode,int sortMode)
         {
             return Forum_GetPostsThreadedPagedAsync(getParentPost,page,pageSize,parentPostId,replySize,rootThreadMode,sortMode).Result;
         }
@@ -213,7 +213,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns a thread of posts starting at the topicId of the input childPostId, optionally returning replies to those posts as well as the original parent.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Forum_GetPostsThreadedPagedFromChildAsync(int childPostId,int page,int pageSize,int replySize,bool rootThreadMode,int sortMode)
+        public async Task<String> Forum_GetPostsThreadedPagedFromChildAsync(object childPostId,int page,int pageSize,int replySize,object rootThreadMode,int sortMode)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Forum/GetPostsThreadedPagedFromChild/{childPostId}/{page}/{pageSize}/{replySize}/{rootThreadMode}/{sortMode}/", new Dictionary<string,string>(){{"childPostId", childPostId.ToString()},{"page", page.ToString()},{"pageSize", pageSize.ToString()},{"replySize", replySize.ToString()},{"rootThreadMode", rootThreadMode.ToString()},{"sortMode", sortMode.ToString()}}));
         }
@@ -222,7 +222,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns a thread of posts starting at the topicId of the input childPostId, optionally returning replies to those posts as well as the original parent.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Forum_GetPostsThreadedPagedFromChild(int childPostId,int page,int pageSize,int replySize,bool rootThreadMode,int sortMode)
+        public String Forum_GetPostsThreadedPagedFromChild(object childPostId,int page,int pageSize,int replySize,object rootThreadMode,int sortMode)
         {
             return Forum_GetPostsThreadedPagedFromChildAsync(childPostId,page,pageSize,replySize,rootThreadMode,sortMode).Result;
         }
@@ -231,7 +231,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns the post specified and its immediate parent.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Forum_GetPostAndParentAsync(int childPostId)
+        public async Task<String> Forum_GetPostAndParentAsync(object childPostId)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Forum/GetPostAndParent/{childPostId}/", new Dictionary<string,string>(){{"childPostId", childPostId.ToString()}}));
         }
@@ -240,7 +240,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns the post specified and its immediate parent.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Forum_GetPostAndParent(int childPostId)
+        public String Forum_GetPostAndParent(object childPostId)
         {
             return Forum_GetPostAndParentAsync(childPostId).Result;
         }
@@ -249,7 +249,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns the post specified and its immediate parent of posts that are awaiting approval.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Forum_GetPostAndParentAwaitingApprovalAsync(int childPostId)
+        public async Task<String> Forum_GetPostAndParentAwaitingApprovalAsync(object childPostId)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Forum/GetPostAndParentAwaitingApproval/{childPostId}/", new Dictionary<string,string>(){{"childPostId", childPostId.ToString()}}));
         }
@@ -258,7 +258,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns the post specified and its immediate parent of posts that are awaiting approval.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Forum_GetPostAndParentAwaitingApproval(int childPostId)
+        public String Forum_GetPostAndParentAwaitingApproval(object childPostId)
         {
             return Forum_GetPostAndParentAwaitingApprovalAsync(childPostId).Result;
         }
@@ -267,7 +267,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets the post Id for the given content item's comments, if it exists.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Forum_GetTopicForContentAsync(int contentId)
+        public async Task<String> Forum_GetTopicForContentAsync(long contentId)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Forum/GetTopicForContent/{contentId}/", new Dictionary<string,string>(){{"contentId", contentId.ToString()}}));
         }
@@ -276,7 +276,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets the post Id for the given content item's comments, if it exists.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Forum_GetTopicForContent(int contentId)
+        public String Forum_GetTopicForContent(long contentId)
         {
             return Forum_GetTopicForContentAsync(contentId).Result;
         }
@@ -303,7 +303,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets the specified forum poll.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Forum_GetPollAsync(int topicId)
+        public async Task<String> Forum_GetPollAsync(long topicId)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Forum/Poll/{topicId}/", new Dictionary<string,string>(){{"topicId", topicId.ToString()}}));
         }
@@ -312,7 +312,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets the specified forum poll.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Forum_GetPoll(int topicId)
+        public String Forum_GetPoll(long topicId)
         {
             return Forum_GetPollAsync(topicId).Result;
         }
@@ -339,7 +339,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns a list of Destiny memberships given a full Gamertag or PSN ID.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_SearchDestinyPlayerAsync(string displayName,int membershipType)
+        public async Task<String> Destiny2_SearchDestinyPlayerAsync(object displayName,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/SearchDestinyPlayer/{membershipType}/{displayName}/", new Dictionary<string,string>(){{"displayName", displayName.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -348,7 +348,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns a list of Destiny memberships given a full Gamertag or PSN ID.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_SearchDestinyPlayer(string displayName,int membershipType)
+        public String Destiny2_SearchDestinyPlayer(object displayName,int membershipType)
         {
             return Destiny2_SearchDestinyPlayerAsync(displayName,membershipType).Result;
         }
@@ -357,7 +357,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns Destiny Profile information for the supplied membership.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetProfileAsync(int destinyMembershipId,int membershipType)
+        public async Task<String> Destiny2_GetProfileAsync(long destinyMembershipId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/{membershipType}/Profile/{destinyMembershipId}/", new Dictionary<string,string>(){{"destinyMembershipId", destinyMembershipId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -366,7 +366,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns Destiny Profile information for the supplied membership.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetProfile(int destinyMembershipId,int membershipType)
+        public String Destiny2_GetProfile(long destinyMembershipId,int membershipType)
         {
             return Destiny2_GetProfileAsync(destinyMembershipId,membershipType).Result;
         }
@@ -375,7 +375,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns character information for the supplied character.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetCharacterAsync(int characterId,int destinyMembershipId,int membershipType)
+        public async Task<String> Destiny2_GetCharacterAsync(long characterId,long destinyMembershipId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/", new Dictionary<string,string>(){{"characterId", characterId.ToString()},{"destinyMembershipId", destinyMembershipId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -384,7 +384,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns character information for the supplied character.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetCharacter(int characterId,int destinyMembershipId,int membershipType)
+        public String Destiny2_GetCharacter(long characterId,long destinyMembershipId,int membershipType)
         {
             return Destiny2_GetCharacterAsync(characterId,destinyMembershipId,membershipType).Result;
         }
@@ -393,7 +393,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns information on the weekly clan rewards and if the clan has earned them or not. Note that this will always report rewards as not redeemed.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetClanWeeklyRewardStateAsync(int groupId)
+        public async Task<String> Destiny2_GetClanWeeklyRewardStateAsync(long groupId)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/Clan/{groupId}/WeeklyRewardState/", new Dictionary<string,string>(){{"groupId", groupId.ToString()}}));
         }
@@ -402,7 +402,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns information on the weekly clan rewards and if the clan has earned them or not. Note that this will always report rewards as not redeemed.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetClanWeeklyRewardState(int groupId)
+        public String Destiny2_GetClanWeeklyRewardState(long groupId)
         {
             return Destiny2_GetClanWeeklyRewardStateAsync(groupId).Result;
         }
@@ -411,7 +411,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Retrieve the details of an instanced Destiny Item.  An instanced Destiny item is one with an ItemInstanceId.  Non-instanced items, such as materials, have no useful instance-specific details and thus are not queryable here.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetItemAsync(int destinyMembershipId,int itemInstanceId,int membershipType)
+        public async Task<String> Destiny2_GetItemAsync(long destinyMembershipId,long itemInstanceId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/{membershipType}/Profile/{destinyMembershipId}/Item/{itemInstanceId}/", new Dictionary<string,string>(){{"destinyMembershipId", destinyMembershipId.ToString()},{"itemInstanceId", itemInstanceId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -420,7 +420,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Retrieve the details of an instanced Destiny Item.  An instanced Destiny item is one with an ItemInstanceId.  Non-instanced items, such as materials, have no useful instance-specific details and thus are not queryable here.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetItem(int destinyMembershipId,int itemInstanceId,int membershipType)
+        public String Destiny2_GetItem(long destinyMembershipId,long itemInstanceId,int membershipType)
         {
             return Destiny2_GetItemAsync(destinyMembershipId,itemInstanceId,membershipType).Result;
         }
@@ -429,7 +429,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Get currently available vendors.  PREVIEW: This service is not yet active, but we are returning the planned schema of the endpoint for review, comment, and preparation for its eventual implementation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetVendorsAsync(int characterId,int destinyMembershipId,int membershipType)
+        public async Task<String> Destiny2_GetVendorsAsync(long characterId,long destinyMembershipId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/Vendors/", new Dictionary<string,string>(){{"characterId", characterId.ToString()},{"destinyMembershipId", destinyMembershipId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -438,7 +438,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Get currently available vendors.  PREVIEW: This service is not yet active, but we are returning the planned schema of the endpoint for review, comment, and preparation for its eventual implementation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetVendors(int characterId,int destinyMembershipId,int membershipType)
+        public String Destiny2_GetVendors(long characterId,long destinyMembershipId,int membershipType)
         {
             return Destiny2_GetVendorsAsync(characterId,destinyMembershipId,membershipType).Result;
         }
@@ -447,7 +447,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Get the details of a specific Vendor.  PREVIEW: This service is not yet active, but we are returning the planned schema of the endpoint for review, comment, and preparation for its eventual implementation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetVendorAsync(int characterId,int destinyMembershipId,int membershipType,int vendorHash)
+        public async Task<String> Destiny2_GetVendorAsync(long characterId,long destinyMembershipId,int membershipType,object vendorHash)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/Vendors/{vendorHash}/", new Dictionary<string,string>(){{"characterId", characterId.ToString()},{"destinyMembershipId", destinyMembershipId.ToString()},{"membershipType", membershipType.ToString()},{"vendorHash", vendorHash.ToString()}}));
         }
@@ -456,7 +456,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Get the details of a specific Vendor.  PREVIEW: This service is not yet active, but we are returning the planned schema of the endpoint for review, comment, and preparation for its eventual implementation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetVendor(int characterId,int destinyMembershipId,int membershipType,int vendorHash)
+        public String Destiny2_GetVendor(long characterId,long destinyMembershipId,int membershipType,object vendorHash)
         {
             return Destiny2_GetVendorAsync(characterId,destinyMembershipId,membershipType,vendorHash).Result;
         }
@@ -465,7 +465,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets the available post game carnage report for the activity ID.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetPostGameCarnageReportAsync(int activityId)
+        public async Task<String> Destiny2_GetPostGameCarnageReportAsync(long activityId)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/Stats/PostGameCarnageReport/{activityId}/", new Dictionary<string,string>(){{"activityId", activityId.ToString()}}));
         }
@@ -474,7 +474,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets the available post game carnage report for the activity ID.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetPostGameCarnageReport(int activityId)
+        public String Destiny2_GetPostGameCarnageReport(long activityId)
         {
             return Destiny2_GetPostGameCarnageReportAsync(activityId).Result;
         }
@@ -501,7 +501,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets leaderboards with the signed in user's friends and the supplied destinyMembershipId as the focus.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetClanLeaderboardsAsync(int groupId)
+        public async Task<String> Destiny2_GetClanLeaderboardsAsync(long groupId)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/Stats/Leaderboards/Clans/{groupId}/", new Dictionary<string,string>(){{"groupId", groupId.ToString()}}));
         }
@@ -510,7 +510,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets leaderboards with the signed in user's friends and the supplied destinyMembershipId as the focus.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetClanLeaderboards(int groupId)
+        public String Destiny2_GetClanLeaderboards(long groupId)
         {
             return Destiny2_GetClanLeaderboardsAsync(groupId).Result;
         }
@@ -519,7 +519,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets aggregated stats for a clan using the same categories as the clan leaderboards.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetClanAggregateStatsAsync(int groupId)
+        public async Task<String> Destiny2_GetClanAggregateStatsAsync(long groupId)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/Stats/AggregateClanStats/{groupId}/", new Dictionary<string,string>(){{"groupId", groupId.ToString()}}));
         }
@@ -528,7 +528,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets aggregated stats for a clan using the same categories as the clan leaderboards.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetClanAggregateStats(int groupId)
+        public String Destiny2_GetClanAggregateStats(long groupId)
         {
             return Destiny2_GetClanAggregateStatsAsync(groupId).Result;
         }
@@ -537,7 +537,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets leaderboards with the signed in user's friends and the supplied destinyMembershipId as the focus.  PREVIEW: This endpoint has not yet been implemented.  It is being returned for a preview of future functionality, and for public comment/suggestion/preparation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetLeaderboardsAsync(int destinyMembershipId,int membershipType)
+        public async Task<String> Destiny2_GetLeaderboardsAsync(long destinyMembershipId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/{membershipType}/Account/{destinyMembershipId}/Stats/Leaderboards/", new Dictionary<string,string>(){{"destinyMembershipId", destinyMembershipId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -546,7 +546,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets leaderboards with the signed in user's friends and the supplied destinyMembershipId as the focus.  PREVIEW: This endpoint has not yet been implemented.  It is being returned for a preview of future functionality, and for public comment/suggestion/preparation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetLeaderboards(int destinyMembershipId,int membershipType)
+        public String Destiny2_GetLeaderboards(long destinyMembershipId,int membershipType)
         {
             return Destiny2_GetLeaderboardsAsync(destinyMembershipId,membershipType).Result;
         }
@@ -555,7 +555,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets leaderboards with the signed in user's friends and the supplied destinyMembershipId as the focus.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetLeaderboardsForCharacterAsync(int characterId,int destinyMembershipId,int membershipType)
+        public async Task<String> Destiny2_GetLeaderboardsForCharacterAsync(long characterId,long destinyMembershipId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/Stats/Leaderboards/{membershipType}/{destinyMembershipId}/{characterId}/", new Dictionary<string,string>(){{"characterId", characterId.ToString()},{"destinyMembershipId", destinyMembershipId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -564,7 +564,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets leaderboards with the signed in user's friends and the supplied destinyMembershipId as the focus.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetLeaderboardsForCharacter(int characterId,int destinyMembershipId,int membershipType)
+        public String Destiny2_GetLeaderboardsForCharacter(long characterId,long destinyMembershipId,int membershipType)
         {
             return Destiny2_GetLeaderboardsForCharacterAsync(characterId,destinyMembershipId,membershipType).Result;
         }
@@ -573,7 +573,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets a page list of Destiny items.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_SearchDestinyEntitiesAsync(string searchTerm,string type)
+        public async Task<String> Destiny2_SearchDestinyEntitiesAsync(object searchTerm,object type)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/Armory/Search/{type}/{searchTerm}/", new Dictionary<string,string>(){{"searchTerm", searchTerm.ToString()},{"type", type.ToString()}}));
         }
@@ -582,7 +582,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets a page list of Destiny items.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_SearchDestinyEntities(string searchTerm,string type)
+        public String Destiny2_SearchDestinyEntities(object searchTerm,object type)
         {
             return Destiny2_SearchDestinyEntitiesAsync(searchTerm,type).Result;
         }
@@ -591,7 +591,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets historical stats for indicated character.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetHistoricalStatsAsync(int characterId,int destinyMembershipId,int membershipType)
+        public async Task<String> Destiny2_GetHistoricalStatsAsync(long characterId,long destinyMembershipId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/", new Dictionary<string,string>(){{"characterId", characterId.ToString()},{"destinyMembershipId", destinyMembershipId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -600,7 +600,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets historical stats for indicated character.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetHistoricalStats(int characterId,int destinyMembershipId,int membershipType)
+        public String Destiny2_GetHistoricalStats(long characterId,long destinyMembershipId,int membershipType)
         {
             return Destiny2_GetHistoricalStatsAsync(characterId,destinyMembershipId,membershipType).Result;
         }
@@ -609,7 +609,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets aggregate historical stats organized around each character for a given account.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetHistoricalStatsForAccountAsync(int destinyMembershipId,int membershipType)
+        public async Task<String> Destiny2_GetHistoricalStatsForAccountAsync(long destinyMembershipId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/{membershipType}/Account/{destinyMembershipId}/Stats/", new Dictionary<string,string>(){{"destinyMembershipId", destinyMembershipId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -618,7 +618,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets aggregate historical stats organized around each character for a given account.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetHistoricalStatsForAccount(int destinyMembershipId,int membershipType)
+        public String Destiny2_GetHistoricalStatsForAccount(long destinyMembershipId,int membershipType)
         {
             return Destiny2_GetHistoricalStatsForAccountAsync(destinyMembershipId,membershipType).Result;
         }
@@ -627,7 +627,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets activity history stats for indicated character.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetActivityHistoryAsync(int characterId,int destinyMembershipId,int membershipType)
+        public async Task<String> Destiny2_GetActivityHistoryAsync(long characterId,long destinyMembershipId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/Activities/", new Dictionary<string,string>(){{"characterId", characterId.ToString()},{"destinyMembershipId", destinyMembershipId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -636,7 +636,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets activity history stats for indicated character.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetActivityHistory(int characterId,int destinyMembershipId,int membershipType)
+        public String Destiny2_GetActivityHistory(long characterId,long destinyMembershipId,int membershipType)
         {
             return Destiny2_GetActivityHistoryAsync(characterId,destinyMembershipId,membershipType).Result;
         }
@@ -645,7 +645,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets details about unique weapon usage, including all exotic weapons.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetUniqueWeaponHistoryAsync(int characterId,int destinyMembershipId,int membershipType)
+        public async Task<String> Destiny2_GetUniqueWeaponHistoryAsync(long characterId,long destinyMembershipId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/UniqueWeapons/", new Dictionary<string,string>(){{"characterId", characterId.ToString()},{"destinyMembershipId", destinyMembershipId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -654,7 +654,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets details about unique weapon usage, including all exotic weapons.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetUniqueWeaponHistory(int characterId,int destinyMembershipId,int membershipType)
+        public String Destiny2_GetUniqueWeaponHistory(long characterId,long destinyMembershipId,int membershipType)
         {
             return Destiny2_GetUniqueWeaponHistoryAsync(characterId,destinyMembershipId,membershipType).Result;
         }
@@ -663,7 +663,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets all activities the character has participated in together with aggregate statistics for those activities.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetDestinyAggregateActivityStatsAsync(int characterId,int destinyMembershipId,int membershipType)
+        public async Task<String> Destiny2_GetDestinyAggregateActivityStatsAsync(long characterId,long destinyMembershipId,int membershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/AggregateActivityStats/", new Dictionary<string,string>(){{"characterId", characterId.ToString()},{"destinyMembershipId", destinyMembershipId.ToString()},{"membershipType", membershipType.ToString()}}));
         }
@@ -672,7 +672,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets all activities the character has participated in together with aggregate statistics for those activities.  PREVIEW: This endpoint is still in beta, and may experience rough edges.  The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetDestinyAggregateActivityStats(int characterId,int destinyMembershipId,int membershipType)
+        public String Destiny2_GetDestinyAggregateActivityStats(long characterId,long destinyMembershipId,int membershipType)
         {
             return Destiny2_GetDestinyAggregateActivityStatsAsync(characterId,destinyMembershipId,membershipType).Result;
         }
@@ -681,7 +681,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets custom localized content for the milestone of the given hash, if it exists.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Destiny2_GetPublicMilestoneContentAsync(int milestoneHash)
+        public async Task<String> Destiny2_GetPublicMilestoneContentAsync(object milestoneHash)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Destiny2/Milestones/{milestoneHash}/Content/", new Dictionary<string,string>(){{"milestoneHash", milestoneHash.ToString()}}));
         }
@@ -690,7 +690,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets custom localized content for the milestone of the given hash, if it exists.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Destiny2_GetPublicMilestoneContent(int milestoneHash)
+        public String Destiny2_GetPublicMilestoneContent(object milestoneHash)
         {
             return Destiny2_GetPublicMilestoneContentAsync(milestoneHash).Result;
         }
@@ -717,7 +717,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns community content.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> CommunityContent_GetCommunityContentAsync(int mediaFilter,int page,int sort)
+        public async Task<String> CommunityContent_GetCommunityContentAsync(int mediaFilter,int page,object sort)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/CommunityContent/Get/{sort}/{mediaFilter}/{page}/", new Dictionary<string,string>(){{"mediaFilter", mediaFilter.ToString()},{"page", page.ToString()},{"sort", sort.ToString()}}));
         }
@@ -726,7 +726,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns community content.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String CommunityContent_GetCommunityContent(int mediaFilter,int page,int sort)
+        public String CommunityContent_GetCommunityContent(int mediaFilter,int page,object sort)
         {
             return CommunityContent_GetCommunityContentAsync(mediaFilter,page,sort).Result;
         }
@@ -807,7 +807,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets the Live Streaming status of a particular Account and Membership Type.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> CommunityContent_GetStreamingStatusForMemberAsync(int membershipId,int membershipType,int partnershipType)
+        public async Task<String> CommunityContent_GetStreamingStatusForMemberAsync(long membershipId,int membershipType,int partnershipType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/CommunityContent/Live/Users/{partnershipType}/{membershipType}/{membershipId}/", new Dictionary<string,string>(){{"membershipId", membershipId.ToString()},{"membershipType", membershipType.ToString()},{"partnershipType", partnershipType.ToString()}}));
         }
@@ -816,7 +816,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Gets the Live Streaming status of a particular Account and Membership Type.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String CommunityContent_GetStreamingStatusForMember(int membershipId,int membershipType,int partnershipType)
+        public String CommunityContent_GetStreamingStatusForMember(long membershipId,int membershipType,int partnershipType)
         {
             return CommunityContent_GetStreamingStatusForMemberAsync(membershipId,membershipType,partnershipType).Result;
         }
@@ -843,7 +843,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns paginated lists of trending items for a category.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Trending_GetTrendingCategoryAsync(string categoryId,int pageNumber)
+        public async Task<String> Trending_GetTrendingCategoryAsync(object categoryId,int pageNumber)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Trending/Categories/{categoryId}/{pageNumber}/", new Dictionary<string,string>(){{"categoryId", categoryId.ToString()},{"pageNumber", pageNumber.ToString()}}));
         }
@@ -852,7 +852,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns paginated lists of trending items for a category.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Trending_GetTrendingCategory(string categoryId,int pageNumber)
+        public String Trending_GetTrendingCategory(object categoryId,int pageNumber)
         {
             return Trending_GetTrendingCategoryAsync(categoryId,pageNumber).Result;
         }
@@ -861,7 +861,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns the detailed results for a specific trending entry.  Note that trending entries are uniquely identified by a combination of *both* the TrendingEntryType *and* the identifier: the identifier alone is not guaranteed to be globally unique.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public async Task<String> Trending_GetTrendingEntryDetailAsync(string identifier,int trendingEntryType)
+        public async Task<String> Trending_GetTrendingEntryDetailAsync(object identifier,int trendingEntryType)
         {
             return await _Web.GetStringAsync(BaseAddress + FormatWithParameters("/Trending/Details/{trendingEntryType}/{identifier}/", new Dictionary<string,string>(){{"identifier", identifier.ToString()},{"trendingEntryType", trendingEntryType.ToString()}}));
         }
@@ -870,7 +870,7 @@ namespace DestinyEndpints.ClassLibrary
         /// Returns the detailed results for a specific trending entry.  Note that trending entries are uniquely identified by a combination of *both* the TrendingEntryType *and* the identifier: the identifier alone is not guaranteed to be globally unique.
         /// </summary>
         /// <returns>A json string for this endpoint</returns>
-        public String Trending_GetTrendingEntryDetail(string identifier,int trendingEntryType)
+        public String Trending_GetTrendingEntryDetail(object identifier,int trendingEntryType)
         {
             return Trending_GetTrendingEntryDetailAsync(identifier,trendingEntryType).Result;
         }

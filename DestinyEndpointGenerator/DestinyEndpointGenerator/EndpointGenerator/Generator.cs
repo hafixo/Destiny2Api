@@ -210,7 +210,8 @@ namespace DestinyEndpints.ClassLibrary
         {
 
             var typeToDataMatch = new Dictionary<String, String>() {
-                { "integer", "int" },
+                { "int64", "long" },
+                { "int32", "int" },
                 { "string", "string"},
                 { "boolean", "bool"}
             };
@@ -224,7 +225,7 @@ namespace DestinyEndpints.ClassLibrary
 
                 foreach (var param in _params.Where(x=>x.location=="path").OrderBy(x=>x.required))
                 {
-                    var maybeType = typeToDataMatch.Where(x => x.Key == param._type).FirstOrDefault();
+                    var maybeType = typeToDataMatch.Where(x => x.Key == param.format).FirstOrDefault();
                     builder.Append(String.Format("{0} {1},", maybeType.Value != null ? maybeType.Value : "object", param.name));
                 }
 
