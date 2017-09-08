@@ -16,9 +16,6 @@ namespace DestinyEndpointGenerator.EndpointGenerator.Models
 
     public class Endpoint
     {
-        public string summary { get; set; }
-        public string description { get; set; }
-
         public Get get { get; set; }
     }
 
