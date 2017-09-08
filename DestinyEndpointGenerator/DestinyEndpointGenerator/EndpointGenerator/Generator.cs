@@ -68,7 +68,7 @@ namespace DestinyEndpointGenerator.EndpointGenerator
                 {
                     if (method.Value.get != null)
                     {
-                        methodBuilder.Append(GenerateMethod(method.Value.get.operationId.Replace(".", "_"), method.Value.get.description));
+                        methodBuilder.Append(GenerateMethod(method.Value.get.operationId.Replace(".", "_"), method.Value.get.description, method.Key));
                     }
                 }
 
@@ -108,14 +108,14 @@ namespace DestinyEndpints.ClassLibrary
         }
 
 
-        private string GenerateMethod(string methodName, string description)
+        private string GenerateMethod(string methodName, string description, string route)
         {
             return
 @"
         {SummaryStatement}
         public async Task<String> {methodName}Async()
         {
-            return await _Web.GetStringAsync(BaseAddress);
+            return await _Web.GetStringAsync(BaseAddress + {route});
         }
 
         {SummaryStatement}
@@ -123,14 +123,13 @@ namespace DestinyEndpints.ClassLibrary
         {
             return {methodName}Async().Result;
         }
-".Replace("{methodName}", methodName).Replace("{SummaryStatement}", GenerateSummaryStatement(description));
+".Replace("{methodName}", methodName).Replace("{SummaryStatement}", GenerateSummaryStatement(description)).Replace("{route}", $"\"{route}\"");
         }
 
         private string GenerateSummaryStatement(string description)
         {
             string template = 
-@"
-        /// <summary>
+@"      /// <summary>
         /// {Description}
         /// </summary>
         /// <returns>A json string for this endpoint</returns>";
