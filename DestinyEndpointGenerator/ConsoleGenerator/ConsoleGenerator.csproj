@@ -65,11 +65,15 @@
     <Compile Include="..\..\DestinyLibrary.cs">
       <Link>DestinyLibrary.cs</Link>
     </Compile>
+    <Compile Include="KeyModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="Keys.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ConsoleGenerator
 {
@@ -69,6 +70,13 @@ namespace ConsoleGenerator
             else {
                 return GetParentUntilTop(searchName, dir.Parent);
             }
+        }
+
+        private static String GetBungieApiKey()
+        {
+            var JsonData = File.ReadAllText(@"Keys.json");
+            var dataModel = JsonConvert.DeserializeObject<KeyModel>(JsonData);
+            return dataModel.Keys.Where(x => x.Name == "BungieNet").FirstOrDefault()?.ApiKey;
         }
     }
 }
