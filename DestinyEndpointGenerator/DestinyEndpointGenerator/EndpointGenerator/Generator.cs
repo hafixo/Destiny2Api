@@ -151,27 +151,4 @@ namespace DestinyEndpints.ClassLibrary
         }
 
     }
-
-    public class DestinyApi
-    {
-        static HttpClient _Web = new HttpClient();
-        const String BaseAddress = "https://www.bungie.net/Platform";
-
-        public DestinyApi()
-        {
-
-        }
-
-        public async Task<String> User_GetBungieNetUserByIdAsync()
-        {
-            return await _Web.GetStringAsync(BaseAddress);
-        }
-
-        public String User_GetBungieNetUserById()
-        {
-            return User_GetBungieNetUserByIdAsync().Result;
-        }
-
-    }
-
 }

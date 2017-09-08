@@ -17,13 +17,28 @@ namespace DestinyEndpointGenerator.EndpointGenerator.Models
     public class Endpoint
     {
         public Get get { get; set; }
+        
+    }
+
+    public class Parameter
+    {
+        public string name { get; set; }
+        [JsonProperty(PropertyName = "in")]
+        public string location {get;set; }
+        
+        public string description { get; set; }
+        public bool required { get; set; }
+        [JsonProperty(PropertyName = "type")]
+        public string _type { get; set; }
+        public string format { get; set; }
+        
     }
 
     public class Get {
         public string[] tags { get; set; }
         public string description { get; set; }
         public string operationId { get; set; }
-
+        public Parameter[] parameters { get; set; }
     }
 
     public class Info
