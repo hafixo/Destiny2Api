@@ -1,3 +1,11 @@
+- [Destiny2Api](#destiny2api)
+- [How to use it](#how-to-use-it)
+    - [Setup](#setup)
+        - [Sample Api Key setup](#sample-api-key-setup)
+- [Helpful Api Link](#helpful-api-link)
+
+
+
 # Destiny2Api
 A core library for the Destiny 2 Api written in C# under .Net Standard 2.0. These base libraries are critical to future development of mobile, desktop, and hybrid (UWP, Xbox) applications.
 
