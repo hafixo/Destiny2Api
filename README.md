@@ -10,14 +10,17 @@ You need an api key to use the BungieNet api. You can get one at https://www.bun
 ### Sample Api Key setup
 Have a file named Keys.json in the location of the software (this should be encrpyted information in production) and use this method to retrieve the key.
 
-  `private static String GetBungieApiKey()
-  {
-    var JsonData = File.ReadAllText(@"Keys.json");
-    var dataModel = JsonConvert.DeserializeObject<KeyModel>(JsonData);
-    return dataModel.Keys.Where(x => x.Name == "BungieNet").FirstOrDefault()?.ApiKey;
-  }`
+```
+private static String GetBungieApiKey()
+{
+  var JsonData = File.ReadAllText(@"Keys.json");
+  var dataModel = JsonConvert.DeserializeObject<KeyModel>(JsonData);
+  return dataModel.Keys.Where(x => x.Name == "BungieNet").FirstOrDefault()?.ApiKey;
+}
+```
 
 Keys.json can look something like this:
+```
 {
   "Keys": 
   [
@@ -29,6 +32,7 @@ Keys.json can look something like this:
     }
   ]
 }
+```
 
 # Helpful Api Link
 https://bungie-net.github.io/
