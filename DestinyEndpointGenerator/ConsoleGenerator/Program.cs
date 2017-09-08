@@ -19,13 +19,7 @@ namespace ConsoleGenerator
         {
 
             _Generator.LoadApiDocsAsync(); //Totally okay this will let the model start loading in the background
-
-            var apiKey = GetBungieApiKey();
-
-
-            var availableThemes = new DestinyApi(apiKey).User_GetAvailableThemes();
-            var GetHolyBreadstickWithSearch = new DestinyApi(apiKey).User_GetMembershipDataById(4611686018429597794, 1);
-
+            
             var startMessage = "A tool for generating C# classes with access to the Destiny 2 Api.";
             Console.Title = startMessage;
             Console.WriteLine(startMessage);
