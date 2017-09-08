@@ -49,11 +49,25 @@ namespace ConsoleGenerator
         static void CreateFile()
         {
             var fileData = _Generator.GenerateClassLibraryAsync().Result;
+            
+            var rootDir = GetParentUntilTop("Destiny2Api", Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory));
 
-            var filePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\ClassLibrary.cs";
+            var filePath = $"{rootDir.FullName}\\DestinyLibrary.cs";
 
             File.WriteAllText(filePath, fileData, Encoding.UTF8);
             
+        }
+
+
+        private static DirectoryInfo GetParentUntilTop(string searchName, DirectoryInfo dir)
+        {
+            if (dir.Name == searchName)
+            {
+                return dir;
+            }
+            else {
+                return GetParentUntilTop(searchName, dir.Parent);
+            }
         }
     }
 }
