@@ -1,4 +1,5 @@
-﻿using DestinyEndpointGenerator.EndpointGenerator;
+﻿using DestinyEndpints.ClassLibrary;
+using DestinyEndpointGenerator.EndpointGenerator;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +19,7 @@ namespace ConsoleGenerator
 
             _Generator.LoadApiDocsAsync(); //Totally okay
 
-
+            var api = new DestinyApi("").User_GetBungieNetUserById(0);
 
 
             var startMessage = "A tool for generating C# classes with access to the Destiny 2 Api.";
