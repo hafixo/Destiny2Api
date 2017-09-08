@@ -17,7 +17,7 @@ namespace ConsoleGenerator
         static void Main(string[] args)
         {
 
-            _Generator.LoadApiDocsAsync(); //Totally okay
+            _Generator.LoadApiDocsAsync(); //Totally okay this will let the model start loading in the background
 
             
 

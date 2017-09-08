@@ -106,7 +106,8 @@ namespace DestinyEndpints.ClassLibrary
         {
             _Web.DefaultRequestHeaders.Add({xApiKeyReference}, apiKey);
         }
-".Replace("{0}", addedData).Replace("{xApiKeyReference}", $"\"{"X-API-Key"}\"");
+".Replace("{0}", addedData)
+.Replace("{xApiKeyReference}", $"\"{"X-API-Key"}\"");
         }
 
 
@@ -149,7 +150,12 @@ namespace DestinyEndpints.ClassLibrary
         {
             return {methodName}Async({ParamPass}).Result;
         }
-".Replace("{methodName}", methodName).Replace("{SummaryStatement}", GenerateSummaryStatement(description)).Replace("{route}", $"\"{route}\"").Replace("{ParamLine}", BuildParamStateIfPossible(_params)).Replace("{ParamDictionary}", BuildParamDictionIfPossible(_params)).Replace("{ParamPass}", ParamPassThrough(_params));
+".Replace("{methodName}", methodName)
+.Replace("{SummaryStatement}", GenerateSummaryStatement(description))
+.Replace("{route}", $"\"{route}\"")
+.Replace("{ParamLine}", BuildParamStateIfPossible(_params))
+.Replace("{ParamDictionary}", BuildParamDictionIfPossible(_params))
+.Replace("{ParamPass}", ParamPassThrough(_params));
         }
 
         private string ParamPassThrough(Parameter[] _params)
@@ -195,10 +201,6 @@ namespace DestinyEndpints.ClassLibrary
                 {
                     innerBuilder.Remove(innerBuilder.Length - 1, 1);
                 }
-                
-
-
-                
 
                 builder.Append("new Dictionary<string,string>(){"+ innerBuilder.ToString() + "}");
 
@@ -250,11 +252,7 @@ namespace DestinyEndpints.ClassLibrary
 
             return template.Replace("{Description}", description);
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+        
         private string GenerateEndingStatements()
         {
             return 
