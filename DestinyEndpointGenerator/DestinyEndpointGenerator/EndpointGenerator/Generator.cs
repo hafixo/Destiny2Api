@@ -104,7 +104,10 @@ namespace DestinyEndpints.ClassLibrary
 
         public DestinyApi(string apiKey)
         {
-            _Web.DefaultRequestHeaders.Add({xApiKeyReference}, apiKey);
+            if (!_Web.DefaultRequestHeaders.Contains({xApiKeyReference}))
+            {
+                _Web.DefaultRequestHeaders.Add({xApiKeyReference}, apiKey);
+            }
         }
 ".Replace("{0}", addedData)
 .Replace("{xApiKeyReference}", $"\"{"X-API-Key"}\"");

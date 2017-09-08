@@ -12,7 +12,10 @@ namespace DestinyEndpints.ClassLibrary
 
         public DestinyApi(string apiKey)
         {
-            _Web.DefaultRequestHeaders.Add("X-API-Key", apiKey);
+            if (!_Web.DefaultRequestHeaders.Contains("X-API-Key"))
+            {
+                _Web.DefaultRequestHeaders.Add("X-API-Key", apiKey);
+            }
         }
 
         private string FormatWithParameters(string input, Dictionary<string, string> ParamKeyPairs)
