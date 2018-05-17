@@ -1,9 +1,13 @@
+- [Status](#status)
 - [Destiny2Api](#destiny2api)
 - [How to use it](#how-to-use-it)
     - [Setup](#setup)
         - [Sample Api Key setup](#sample-api-key-setup)
 - [Helpful Api Link](#helpful-api-link)
 
+
+# Status
+No longer being developed I am very busy with a lot of work and summer activites and cannot write a lot of code right now. Thankfully there are plenty of projects out there already that can work with the BungieNet api.
 
 
 # Destiny2Api
